@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya | Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fff8f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        nav .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #d85c7a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d85c7a;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #fff1f5, #ffe5d9);
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            color: #d85c7a;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h2 {
+            font-size: 28px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 13px 30px;
+            background: #d85c7a;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #b84462;
+            transform: translateY(-3px);
+        }
+
+        /* Common Section */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #d85c7a;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* About */
+        .about {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Education */
+        .education-card {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .education-card h3 {
+            color: #d85c7a;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Hobbies */
+        .hobbies {
+            background: #fff0f3;
+        }
+
+        .hobby-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .hobby-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hobby-card h3 {
+            color: #d85c7a;
+            margin-bottom: 10px;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero-content h1 {
+                font-size: 45px;
+            }
+
+            .hero-content h2 {
+                font-size: 22px;
+            }
+
+            .hobby-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Divya</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#hobbies">Hobbies</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm Divya 👋</h1>
+            <h2>BE Student & Passionate Explorer</h2>
+
+            <p>
+                Welcome to my personal webpage! I'm currently pursuing
+                my Bachelor of Engineering at Jain Institute of Technology.
+                I enjoy learning new things, cooking delicious food,
+                and exploring new places.
+            </p>
+
+            <a href="#about" class="btn">Explore My Profile</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>A little something about me</p>
+        </div>
+
+        <div class="about">
+            <p>
+                Hello! I'm Divya, a BE student at
+                <strong>Jain Institute of Technology</strong>.
+                I am curious, enthusiastic, and always interested in
+                learning something new. Apart from academics, I love
+                spending my time cooking and travelling.
+            </p>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="section-title">
+            <h2>Education</h2>
+            <p>My academic journey</p>
+        </div>
+
+        <div class="education-card">
+            <h3>Bachelor of Engineering</h3>
+            <p><strong>Jain Institute of Technology</strong></p>
+            <p>Currently pursuing my BE degree.</p>
+        </div>
+    </section>
+
+    <!-- Hobbies -->
+    <section class="hobbies" id="hobbies">
+        <div class="section-title">
+            <h2>My Hobbies</h2>
+            <p>The things I enjoy doing in my free time</p>
+        </div>
+
+        <div class="hobby-container">
+
+            <div class="hobby-card">
+                <div class="hobby-icon">🍳</div>
+                <h3>Cooking</h3>
+                <p>
+                    I love cooking and experimenting with different
+                    recipes and flavors.
+                </p>
+            </div>
+
+            <div class="hobby-card">
+                <div class="hobby-icon">✈️</div>
+                <h3>Travelling</h3>
+                <p>
+                    I love travelling, discovering new places,
+                    experiencing different cultures, and creating memories.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Thank you for visiting my webpage!</p>
+        </div>
+
+        <p>I'd love to connect and share experiences. 😊</p>
+
+        <a href="mailto:divya@example.com" class="btn">
+            Contact Me
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Divya | Personal Portfolio</p>
+    </footer>
+
+</body>
+</html>
