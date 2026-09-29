@@ -1,1385 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DIVYA // Digital Portfolio</title>
-
-<style>
-/* =========================================================
-   DIVYA // SCI-FI PORTFOLIO
-   Single-file GitHub Pages website
-   ========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
-
-:root {
-    --cyan: #00f6ff;
-    --blue: #008cff;
-    --purple: #8b5cf6;
-    --pink: #ff2bd6;
-    --green: #00ff9d;
-    --bg: #02050b;
-    --panel: rgba(5, 15, 28, 0.72);
-    --text: #dffcff;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    overflow-x: hidden;
-    cursor: none;
-}
-
-/* =========================================================
-   BACKGROUND
-   ========================================================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -5;
-
-    background:
-        linear-gradient(rgba(0,246,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,246,255,.035) 1px, transparent 1px);
-
-    background-size: 50px 50px;
-    animation: gridMove 12s linear infinite;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 4px,
-            rgba(0, 255, 255, .015) 5px
-        );
-
-    mix-blend-mode: screen;
-}
-
-@keyframes gridMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(50px); }
-}
-
-/* =========================================================
-   PARTICLES
-   ========================================================= */
-
-#particles {
-    position: fixed;
-    inset: 0;
-    z-index: -4;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: var(--cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--cyan);
-    animation: floatParticle linear infinite;
-}
-
-@keyframes floatParticle {
-    from {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    85% {
-        opacity: 1;
-    }
-
-    to {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* =========================================================
-   MOUSE CURSOR
-   ========================================================= */
-
-.cursor {
-    position: fixed;
-    width: 18px;
-    height: 18px;
-    border: 1px solid var(--cyan);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    box-shadow:
-        0 0 10px var(--cyan),
-        inset 0 0 10px rgba(0,246,255,.3);
-    transition: width .2s, height .2s, border-color .2s;
-}
-
-.cursor::before,
-.cursor::after {
-    content: "";
-    position: absolute;
-    background: var(--cyan);
-}
-
-.cursor::before {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.cursor::after {
-    width: 30px;
-    height: 1px;
-    left: -7px;
-    top: 50%;
-    opacity: .4;
-}
-
-.cursor-ring {
-    position: fixed;
-    width: 45px;
-    height: 45px;
-    border: 1px dashed rgba(0,246,255,.35);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    animation: cursorRotate 5s linear infinite;
-}
-
-@keyframes cursorRotate {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.cursor.hover {
-    width: 35px;
-    height: 35px;
-    border-color: var(--pink);
-    box-shadow: 0 0 20px var(--pink);
-}
-
-.trail {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: var(--cyan);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9997;
-    box-shadow: 0 0 12px var(--cyan);
-}
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-nav {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(1100px, 92%);
-    padding: 12px 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(2, 8, 18, .75);
-    border: 1px solid rgba(0,246,255,.25);
-    backdrop-filter: blur(15px);
-
-    box-shadow:
-        0 0 30px rgba(0,246,255,.05),
-        inset 0 0 20px rgba(0,246,255,.02);
-
-    z-index: 1000;
-}
-
-.logo {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cyan);
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-shadow: 0 0 15px var(--cyan);
-}
-
-.logo span {
-    color: var(--pink);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: #8bbac1;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    transition: .3s;
-}
-
-nav a:hover {
-    color: var(--cyan);
-    text-shadow: 0 0 12px var(--cyan);
-}
-
-/* =========================================================
-   GENERAL
-   ========================================================= */
-
-section {
-    min-height: 100vh;
-    padding: 120px 8%;
-    position: relative;
-}
-
-.section-label {
-    color: var(--cyan);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 12px;
-}
-
-.section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(30px, 5vw, 55px);
-    margin-bottom: 45px;
-
-    background: linear-gradient(
-        90deg,
-        #fff,
-        var(--cyan),
-        var(--purple)
-    );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-#home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-.hero {
-    position: relative;
-    z-index: 2;
-}
-
-.status {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 8px 15px;
-    margin-bottom: 25px;
-
-    border: 1px solid rgba(0,255,157,.35);
-    color: var(--green);
-
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-
-    background: rgba(0,255,157,.03);
-}
-
-.status-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--green);
-    animation: blink 1.2s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: .2; }
-}
-
-.hero h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(55px, 11vw, 140px);
-    line-height: .9;
-    letter-spacing: 8px;
-
-    color: white;
-
-    text-shadow:
-        0 0 15px rgba(0,246,255,.5),
-        0 0 60px rgba(0,246,255,.15);
-}
-
-.hero h1 span {
-    display: block;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--cyan);
-    text-shadow: 0 0 25px rgba(0,246,255,.35);
-}
-
-.hero-sub {
-    margin: 30px auto;
-    max-width: 650px;
-    color: #89b8c0;
-    font-size: 18px;
-    letter-spacing: 2px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 14px 25px;
-    border: 1px solid var(--cyan);
-    color: var(--cyan);
-    text-decoration: none;
-
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-
-    position: relative;
-    overflow: hidden;
-    transition: .3s;
-}
-
-.btn:hover {
-    background: var(--cyan);
-    color: #001015;
-    box-shadow: 0 0 30px rgba(0,246,255,.5);
-}
-
-.btn.secondary {
-    border-color: var(--purple);
-    color: #b99cff;
-}
-
-.btn.secondary:hover {
-    background: var(--purple);
-    color: white;
-}
-
-/* =========================================================
-   SCI-FI ORBIT
-   ========================================================= */
-
-.orbit {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border: 1px solid rgba(0,246,255,.08);
-    border-radius: 50%;
-    animation: spin 25s linear infinite;
-    pointer-events: none;
-}
-
-.orbit::before {
-    content: "";
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--cyan);
-    border-radius: 50%;
-    top: 20px;
-    left: 50%;
-    box-shadow: 0 0 25px var(--cyan);
-}
-
-.orbit.two {
-    width: 800px;
-    height: 350px;
-    transform: rotate(35deg);
-    animation-duration: 18s;
-}
-
-.orbit.three {
-    width: 350px;
-    height: 800px;
-    transform: rotate(-40deg);
-    animation-duration: 30s;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* =========================================================
-   ABOUT
-   ========================================================= */
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.about-text {
-    color: #8eb8bf;
-    font-size: 19px;
-    line-height: 1.8;
-}
-
-.about-text strong {
-    color: var(--cyan);
-}
-
-/* HUD PANEL */
-
-.hud {
-    position: relative;
-    padding: 35px;
-    background: var(--panel);
-    border: 1px solid rgba(0,246,255,.25);
-
-    transform-style: preserve-3d;
-    transition: transform .15s ease;
-}
-
-.hud::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 25px;
-    width: 80px;
-    height: 2px;
-    background: var(--cyan);
-    box-shadow: 0 0 15px var(--cyan);
-}
-
-.hud::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    right: 25px;
-    width: 80px;
-    height: 2px;
-    background: var(--pink);
-    box-shadow: 0 0 15px var(--pink);
-}
-
-.hud h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cyan);
-    margin-bottom: 25px;
-    letter-spacing: 2px;
-}
-
-.data-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,.05);
-}
-
-.data-row span:first-child {
-    color: #56777d;
-}
-
-.data-row span:last-child {
-    color: white;
-}
-
-/* =========================================================
-   HOBBIES
-   ========================================================= */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.card {
-    position: relative;
-    min-height: 270px;
-    padding: 35px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,246,255,.06),
-            rgba(139,92,246,.04)
-        );
-
-    border: 1px solid rgba(0,246,255,.16);
-
-    overflow: hidden;
-
-    transition:
-        transform .2s,
-        border-color .3s,
-        box-shadow .3s;
-}
-
-.card:hover {
-    border-color: var(--cyan);
-    box-shadow:
-        0 0 30px rgba(0,246,255,.12),
-        inset 0 0 30px rgba(0,246,255,.03);
-}
-
-.card-number {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-
-    font-family: 'Orbitron', sans-serif;
-    font-size: 10px;
-    color: rgba(0,246,255,.35);
-}
-
-.card-icon {
-    font-size: 55px;
-    margin-bottom: 25px;
-    filter: drop-shadow(0 0 12px var(--cyan));
-}
-
-.card h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #71949b;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.card-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background: linear-gradient(90deg, var(--cyan), var(--purple));
-    transition: width .5s;
-}
-
-.card:hover .card-line {
-    width: 100%;
-}
-
-/* =========================================================
-   EDUCATION
-   ========================================================= */
-
-.education-box {
-    max-width: 900px;
-    margin: auto;
-    position: relative;
-
-    padding: 45px;
-
-    background: rgba(5,15,28,.65);
-    border: 1px solid rgba(139,92,246,.3);
-
-    box-shadow: 0 0 50px rgba(139,92,246,.05);
-}
-
-.education-box::before {
-    content: "EDUCATION_MODULE";
-    position: absolute;
-    top: -11px;
-    left: 30px;
-
-    padding: 4px 12px;
-
-    background: var(--bg);
-    color: var(--purple);
-
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-.education-box h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 25px;
-    color: white;
-    margin-bottom: 12px;
-}
-
-.college {
-    color: var(--cyan);
-    font-size: 20px;
-}
-
-.education-box p {
-    color: #718e95;
-    margin-top: 15px;
-}
-
-/* =========================================================
-   TERMINAL
-   ========================================================= */
-
-.terminal {
-    max-width: 800px;
-    margin: 60px auto 0;
-    border: 1px solid rgba(0,246,255,.2);
-    background: #010306;
-    box-shadow: 0 0 40px rgba(0,246,255,.04);
-}
-
-.terminal-top {
-    padding: 10px 15px;
-    border-bottom: 1px solid rgba(0,246,255,.15);
-    display: flex;
-    gap: 7px;
-}
-
-.terminal-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.red { background: #ff3b6b; }
-.yellow { background: #ffd166; }
-.green { background: #00ff9d; }
-
-.terminal-body {
-    padding: 25px;
-    color: #69ffb7;
-    font-family: monospace;
-    line-height: 1.8;
-}
-
-.terminal-body .dim {
-    color: #42635a;
-}
-
-.cursor-text {
-    animation: textBlink .8s infinite;
-}
-
-@keyframes textBlink {
-    50% { opacity: 0; }
-}
-
-/* =========================================================
-   CONTACT
-   ========================================================= */
-
-#contact {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.contact-content {
-    max-width: 750px;
-}
-
-.contact-content h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(35px, 7vw, 75px);
-    color: white;
-}
-
-.contact-content p {
-    color: #789da4;
-    font-size: 18px;
-    margin: 25px 0;
-}
-
-.contact-box {
-    display: inline-block;
-    padding: 15px 30px;
-    border: 1px solid var(--cyan);
-    color: var(--cyan);
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-    box-shadow: 0 0 25px rgba(0,246,255,.08);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-    padding: 25px;
-    text-align: center;
-    border-top: 1px solid rgba(0,246,255,.1);
-    color: #41636a;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 9px;
-    letter-spacing: 3px;
-}
-
-/* =========================================================
-   SCAN LINE
-   ========================================================= */
-
-.scan-line {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: rgba(0,246,255,.12);
-    box-shadow: 0 0 15px rgba(0,246,255,.4);
-    z-index: 999;
-    pointer-events: none;
-
-    animation: scan 5s linear infinite;
-}
-
-@keyframes scan {
-    from { transform: translateY(-10px); }
-    to { transform: translateY(100vh); }
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 800px) {
-
-    body {
-        cursor: auto;
-    }
-
-    .cursor,
-    .cursor-ring,
-    .trail {
-        display: none;
-    }
-
-    nav {
-        top: 10px;
-    }
-
-    nav ul {
-        gap: 10px;
-    }
-
-    nav a {
-        font-size: 8px;
-    }
-
-    .logo {
-        font-size: 15px;
-    }
-
-    .about-grid,
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .orbit {
-        width: 300px;
-        height: 300px;
-    }
-
-    section {
-        padding: 100px 6%;
-    }
-
-    .hero h1 {
-        letter-spacing: 3px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya | Personal Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fff8f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        nav .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #d85c7a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d85c7a;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #fff1f5, #ffe5d9);
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            color: #d85c7a;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h2 {
+            font-size: 28px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 13px 30px;
+            background: #d85c7a;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #b84462;
+            transform: translateY(-3px);
+        }
+
+        /* Common Section */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #d85c7a;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* About */
+        .about {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Education */
+        .education-card {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .education-card h3 {
+            color: #d85c7a;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Hobbies */
+        .hobbies {
+            background: #fff0f3;
+        }
+
+        .hobby-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .hobby-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .hobby-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hobby-card h3 {
+            color: #d85c7a;
+            margin-bottom: 10px;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero-content h1 {
+                font-size: 45px;
+            }
+
+            .hero-content h2 {
+                font-size: 22px;
+            }
+
+            .hobby-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 6%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- Mouse -->
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Divya</div>
 
-<!-- Scan -->
-<div class="scan-line"></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#hobbies">Hobbies</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<!-- Particles -->
-<div id="particles"></div>
-
-<!-- Navigation -->
-<nav>
-    <div class="logo">DIVYA<span>//</span>01</div>
-
-    <ul>
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#hobbies">HOBBIES</a></li>
-        <li><a href="#education">EDU</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-    </ul>
-</nav>
-
-
-<!-- =====================================================
-     HOME
-===================================================== -->
-
-<section id="home">
-
-    <div class="orbit"></div>
-    <div class="orbit two"></div>
-    <div class="orbit three"></div>
-
-    <div class="hero">
-
-        <div class="status">
-            <span class="status-dot"></span>
-            SYSTEM ONLINE // PORTFOLIO ACTIVE
-        </div>
-
-        <h1>
-            HELLO
-            <span>DIVYA</span>
-        </h1>
-
-        <p class="hero-sub">
-            BE STUDENT • CREATIVE MIND • FOOD EXPLORER •
-            TRAVEL ENTHUSIAST
-        </p>
-
-        <div class="hero-buttons">
-            <a class="btn" href="#about">INITIALIZE PROFILE</a>
-            <a class="btn secondary" href="#hobbies">EXPLORE INTERESTS</a>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section id="about">
-
-    <div class="section-label">// 01 — PROFILE</div>
-
-    <h2 class="section-title">ABOUT ME</h2>
-
-    <div class="about-grid">
-
-        <div class="about-text">
+    <!-- Home -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm Divya 👋</h1>
+            <h2>BE Student & Passionate Explorer</h2>
 
             <p>
-                Hello! I'm <strong>Divya</strong>, a BE student
-                currently studying at <strong>Jain Institute
-                of Technology</strong>.
+                Welcome to my personal webpage! I'm currently pursuing
+                my Bachelor of Engineering at Jain Institute of Technology.
+                I enjoy learning new things, cooking delicious food,
+                and exploring new places.
             </p>
 
-            <br>
+            <a href="#about" class="btn">Explore My Profile</a>
+        </div>
+    </section>
 
+    <!-- About -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>A little something about me</p>
+        </div>
+
+        <div class="about">
             <p>
-                I enjoy discovering new ideas, learning new
-                technologies and experiencing everything the
-                world has to offer.
+                Hello! I'm Divya, a BE student at
+                <strong>Jain Institute of Technology</strong>.
+                I am curious, enthusiastic, and always interested in
+                learning something new. Apart from academics, I love
+                spending my time cooking and travelling.
             </p>
+        </div>
+    </section>
 
-            <br>
-
-            <p>
-                Outside academics, my world revolves around
-                <strong>cooking</strong>, <strong>travelling</strong>
-                and creating memorable experiences.
-            </p>
-
+    <!-- Education -->
+    <section id="education">
+        <div class="section-title">
+            <h2>Education</h2>
+            <p>My academic journey</p>
         </div>
 
-        <div class="hud" data-tilt>
+        <div class="education-card">
+            <h3>Bachelor of Engineering</h3>
+            <p><strong>Jain Institute of Technology</strong></p>
+            <p>Currently pursuing my BE degree.</p>
+        </div>
+    </section>
 
-            <h3>PERSONAL_DATA</h3>
-
-            <div class="data-row">
-                <span>NAME</span>
-                <span>DIVYA</span>
-            </div>
-
-            <div class="data-row">
-                <span>ROLE</span>
-                <span>BE STUDENT</span>
-            </div>
-
-            <div class="data-row">
-                <span>INSTITUTE</span>
-                <span>JAIN INSTITUTE OF TECHNOLOGY</span>
-            </div>
-
-            <div class="data-row">
-                <span>STATUS</span>
-                <span style="color:#00ff9d">ONLINE</span>
-            </div>
-
-            <div class="data-row">
-                <span>INTERESTS</span>
-                <span>COOKING / TRAVEL</span>
-            </div>
-
+    <!-- Hobbies -->
+    <section class="hobbies" id="hobbies">
+        <div class="section-title">
+            <h2>My Hobbies</h2>
+            <p>The things I enjoy doing in my free time</p>
         </div>
 
-    </div>
-</section>
+        <div class="hobby-container">
 
-
-<!-- =====================================================
-     HOBBIES
-===================================================== -->
-
-<section id="hobbies">
-
-    <div class="section-label">// 02 — INTERESTS</div>
-
-    <h2 class="section-title">MY UNIVERSE</h2>
-
-    <div class="cards">
-
-        <div class="card" data-tilt>
-
-            <div class="card-number">01</div>
-
-            <div class="card-icon">🍳</div>
-
-            <h3>COOKING</h3>
-
-            <p>
-                Experimenting with recipes, discovering
-                flavors and creating delicious food.
-            </p>
-
-            <div class="card-line"></div>
-
-        </div>
-
-
-        <div class="card" data-tilt>
-
-            <div class="card-number">02</div>
-
-            <div class="card-icon">✈️</div>
-
-            <h3>TRAVELLING</h3>
-
-            <p>
-                Exploring new destinations, discovering
-                different cultures and collecting memories.
-            </p>
-
-            <div class="card-line"></div>
-
-        </div>
-
-
-        <div class="card" data-tilt>
-
-            <div class="card-number">03</div>
-
-            <div class="card-icon">💻</div>
-
-            <h3>LEARNING</h3>
-
-            <p>
-                Exploring technology, building new skills
-                and continuously learning something new.
-            </p>
-
-            <div class="card-line"></div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     EDUCATION
-===================================================== -->
-
-<section id="education">
-
-    <div class="section-label">// 03 — ACADEMIC_CORE</div>
-
-    <h2 class="section-title">EDUCATION</h2>
-
-    <div class="education-box">
-
-        <h3>BACHELOR OF ENGINEERING</h3>
-
-        <div class="college">
-            Jain Institute of Technology
-        </div>
-
-        <p>
-            Currently pursuing my BE degree and exploring
-            the world of engineering and technology.
-        </p>
-
-    </div>
-
-
-    <div class="terminal">
-
-        <div class="terminal-top">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-        </div>
-
-        <div class="terminal-body">
-
-            <div>
-                <span class="dim">divya@portfolio:~$</span>
-                initialize education
+            <div class="hobby-card">
+                <div class="hobby-icon">🍳</div>
+                <h3>Cooking</h3>
+                <p>
+                    I love cooking and experimenting with different
+                    recipes and flavors.
+                </p>
             </div>
 
-            <div>
-                Loading academic module...
-            </div>
-
-            <div>
-                [████████████████████] 100%
-            </div>
-
-            <div>
-                Institution: Jain Institute of Technology
-            </div>
-
-            <div>
-                Program: Bachelor of Engineering
-            </div>
-
-            <div>
-                Status: <span style="color:#00ff9d">
-                ACTIVE</span>
-            </div>
-
-            <br>
-
-            <div>
-                <span class="dim">divya@portfolio:~$</span>
-                <span class="cursor-text">_</span>
+            <div class="hobby-card">
+                <div class="hobby-icon">✈️</div>
+                <h3>Travelling</h3>
+                <p>
+                    I love travelling, discovering new places,
+                    experiencing different cultures, and creating memories.
+                </p>
             </div>
 
         </div>
+    </section>
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section id="contact">
-
-    <div class="contact-content">
-
-        <div class="section-label">// 04 — CONNECTION</div>
-
-        <h2>LET'S CONNECT</h2>
-
-        <p>
-            Thanks for entering my digital space.
-            More adventures are loading...
-        </p>
-
-        <div class="contact-box">
-            DIVYA // END OF TRANSMISSION
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Thank you for visiting my webpage!</p>
         </div>
 
-    </div>
-
-</section>
-
-
-<footer>
-    © 2026 DIVYA // DIGITAL PORTFOLIO // SYSTEM ONLINE
-</footer>
-
-
-<script>
-
-/* =========================================================
-   PARTICLE GENERATOR
-========================================================= */
-
-const particleContainer = document.getElementById("particles");
-
-for (let i = 0; i < 90; i++) {
-
-    const particle = document.createElement("div");
-
-    particle.className = "particle";
-
-    particle.style.left = Math.random() * 100 + "%";
-
-    particle.style.animationDuration =
-        (5 + Math.random() * 15) + "s";
-
-    particle.style.animationDelay =
-        Math.random() * 10 + "s";
-
-    particle.style.opacity =
-        Math.random();
-
-    particleContainer.appendChild(particle);
-}
-
-
-/* =========================================================
-   MOUSE TRACKING
-========================================================= */
-
-const cursor = document.querySelector(".cursor");
-const ring = document.querySelector(".cursor-ring");
-
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-
-let ringX = mouseX;
-let ringY = mouseY;
-
-document.addEventListener("mousemove", (e) => {
-
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    cursor.style.left = mouseX + "px";
-    cursor.style.top = mouseY + "px";
-
-});
-
-function animateRing() {
-
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-
-    ring.style.left = ringX + "px";
-    ring.style.top = ringY + "px";
-
-    requestAnimationFrame(animateRing);
-}
-
-animateRing();
-
-
-/* =========================================================
-   MOUSE TRAIL
-========================================================= */
-
-const trails = [];
-
-for (let i = 0; i < 12; i++) {
-
-    const dot = document.createElement("div");
-
-    dot.className = "trail";
-
-    document.body.appendChild(dot);
-
-    trails.push({
-        element: dot,
-        x: mouseX,
-        y: mouseY
-    });
-}
-
-function animateTrail() {
-
-    let previousX = mouseX;
-    let previousY = mouseY;
-
-    trails.forEach((trail, index) => {
-
-        trail.x += (previousX - trail.x) * 0.25;
-        trail.y += (previousY - trail.y) * 0.25;
-
-        trail.element.style.left = trail.x + "px";
-        trail.element.style.top = trail.y + "px";
-
-        trail.element.style.opacity =
-            1 - index / trails.length;
-
-        previousX = trail.x;
-        previousY = trail.y;
-
-    });
-
-    requestAnimationFrame(animateTrail);
-}
-
-animateTrail();
-
-
-/* =========================================================
-   HOVER CURSOR
-========================================================= */
-
-document.querySelectorAll("a, .card, .hud").forEach(element => {
-
-    element.addEventListener("mouseenter", () => {
-        cursor.classList.add("hover");
-    });
-
-    element.addEventListener("mouseleave", () => {
-        cursor.classList.remove("hover");
-    });
-
-});
-
-
-/* =========================================================
-   3D MOUSE TILT
-========================================================= */
-
-document.querySelectorAll("[data-tilt]").forEach(card => {
-
-    card.addEventListener("mousemove", (e) => {
-
-        const rect = card.getBoundingClientRect();
-
-        const x =
-            e.clientX - rect.left;
-
-        const y =
-            e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX =
-            ((y - centerY) / centerY) * -5;
-
-        const rotateY =
-            ((x - centerX) / centerX) * 5;
-
-        card.style.transform =
-            `perspective(800px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             translateZ(8px)`;
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform =
-            "perspective(800px) rotateX(0) rotateY(0)";
-
-    });
-
-});
-
-
-/* =========================================================
-   MOUSE PARALLAX HERO
-========================================================= */
-
-const hero = document.querySelector(".hero");
-
-document.addEventListener("mousemove", (e) => {
-
-    const x =
-        (e.clientX / window.innerWidth - .5) * 15;
-
-    const y =
-        (e.clientY / window.innerHeight - .5) * 15;
-
-    hero.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-});
-
-
-/* =========================================================
-   RANDOM GLITCH EFFECT
-========================================================= */
-
-const title = document.querySelector(".hero h1");
-
-setInterval(() => {
-
-    if (Math.random() > .75) {
-
-        title.style.transform =
-            "translateX(2px)";
-
-        setTimeout(() => {
-            title.style.transform = "";
-        }, 80);
-
-    }
-
-}, 1200);
-
-
-/* =========================================================
-   CONSOLE MESSAGE
-========================================================= */
-
-console.log(`
-╔══════════════════════════════════╗
-║       DIVYA // SYSTEM ONLINE     ║
-║                                  ║
-║  Portfolio initialized.          ║
-║  Welcome to the digital space.  ║
-╚══════════════════════════════════╝
-`);
-
-</script>
+        <p>I'd love to connect and share experiences. 😊</p>
+
+        <a href="mailto:divya@example.com" class="btn">
+            Contact Me
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Divya | Personal Portfolio</p>
+    </footer>
 
 </body>
 </html>
